@@ -5,7 +5,7 @@ import android.app.Application
 import android.util.Log
 
 private const val DEBUG = true
-private const val TAG = "SNFix/Java"
+private const val TAG = "PIF/Java"
 
 internal fun <T> Any.get(name: String) = this::class.java.getDeclaredField(name).let { field ->
     field.isAccessible = true
