@@ -29,8 +29,6 @@ class ProxyProvider(
             val patchedBrand         = /* ro.product.brand                */ "htc"
             val patchedManufacturer  = /* ro.product.manufacturer         */ "HTC"
             val patchedSecurityPatch = /* ro.build.version.security_patch */ "2020-03-01"
-            val patchedFirstApiLevel = /* ro.product.first_api_level      */ 28
-            val patchedSDKVersion    = /* ro.build.version.sdk            */ 28
             val patchedFingerprint   = /* ro.build.fingerprint            */ "htc/exouhl_00617/htc_exouhl:9/PQ2A.190205.003/1109191.2:user/release-keys"
             val patchedBuildID       = /* ro.build.id                     */ "PQ2A.190205.003"
 
@@ -63,16 +61,6 @@ class ProxyProvider(
             Build.VERSION::class.java.getDeclaredField("SECURITY_PATCH").let { field ->
                 field.isAccessible = true
                 field.set(null, patchedSecurityPatch)
-            }
-            logDebug("Patch FIRST_API_LEVEL prop. Set it to: $patchedFirstApiLevel")
-            Build.VERSION::class.java.getDeclaredField("FIRST_API_LEVEL").let { field ->
-                field.isAccessible = true
-                field.set(null, patchedFirstApiLevel)
-            }
-            logDebug("Patch SDK_VERSION prop. Set it to: $patchedSDKVersion")
-            Build.VERSION::class.java.getDeclaredField("SDK_INT").let { field ->
-                field.isAccessible = true
-                field.set(null, patchedSDKVersion)
             }
             logDebug("Patch FINGERPRINT prop. Set it to: $patchedFingerprint")
             Build::class.java.getDeclaredField("FINGERPRINT").let { field ->
