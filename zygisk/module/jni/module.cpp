@@ -9,6 +9,8 @@
 #include "zygisk.hpp"
 #include "module.h"
 
+#define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, "SNFix/Native", __VA_ARGS__)
+
 namespace safetynetfix {
 
 class SafetyNetFixModule : public zygisk::ModuleBase {
@@ -97,7 +99,7 @@ private:
         // spoof the model in that process. Leaving other processes alone fixes various issues
         // caused by model detection and flag provisioning, such as broken weather with the new
         // smartspace on Android 12.
-        if (process == "com.google.android.gms.unstable") {
+        if (process.rfind("com.google.android.gms", 0) == 0 || process == "com.google.android.gms.unstable") {
             // Load the payload, but don't inject it yet until after specialization
             // Otherwise, specialization fails if any code from the payload still happens to be
             // running
