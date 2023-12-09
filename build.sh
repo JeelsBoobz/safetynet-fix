@@ -30,5 +30,6 @@ pushd magisk
 version="$(grep '^version=' module.prop  | cut -d= -f2)"
 rm -f "../safetynet-fix-$version.zip" classes.dex
 unzip "../java/app/build/outputs/apk/release/app-release.apk" "classes.dex"
+mv -f classes.dex SNFix.dex
 zip -r9 "../safetynet-fix-$version.zip" .
 popd
